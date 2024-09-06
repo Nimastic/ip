@@ -28,15 +28,17 @@ test {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
+    // mainClass.set("seedu.duke.Duke")
+    mainClass.set("jeriel.Jeriel")
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "jeriel"
     archiveClassifier = null
 }
 
 jar {
+    enabled = false
     manifest {
         attributes(
             'Main-Class': 'jeriel.Jeriel'
@@ -50,4 +52,16 @@ jar {
 
 run{
     standardInput = System.in
+}
+
+distZip {
+    dependsOn shadowJar
+}
+
+distTar {
+    dependsOn shadowJar
+}
+
+startScripts {
+    dependsOn shadowJar
 }
