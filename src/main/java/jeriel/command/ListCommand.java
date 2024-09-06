@@ -10,7 +10,21 @@ public class ListCommand extends Command {
      * @param storage the storage to save to (not used)
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        if (tasks.size() == 0) {
+            return "Your task list is empty.";
+        }
+        
+        StringBuilder response = new StringBuilder("Here are the tasks in your list:\n");
+        
+        for (int i = 0; i < tasks.size(); i++) {
+            response.append(i + 1).append(". ").append(tasks.getTask(i)).append("\n");
+        }
+        
+        // Optionally show the task list in the UI
         ui.showTaskList(tasks);
+        
+        // Return the task list as a response string
+        return response.toString();
     }
 }

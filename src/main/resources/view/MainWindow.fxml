@@ -13,14 +13,21 @@
             fx:controller="jeriel.MainWindow">
 
     <children>
+        <!-- User Input TextField -->
         <TextField fx:id="userInput" prefHeight="40.0" prefWidth="324.0"
                    AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0"
-                   AnchorPane.rightAnchor="75.0"/>
+                   AnchorPane.rightAnchor="75.0" onAction="#handleUserInput" />
+        
+        <!-- Send Button -->
         <Button fx:id="sendButton" text="Send" prefHeight="40.0" prefWidth="75.0"
-                AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="0.0"/>
+                AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="0.0" onAction="#handleUserInput" />
+        
+        <!-- ScrollPane containing the VBox for dialog messages -->
         <ScrollPane fx:id="scrollPane" prefHeight="557.0" prefWidth="400.0"
                     AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0"
                     AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="43.0">
+            
+            <!-- VBox for holding chat messages -->
             <content>
                 <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0"/>
             </content>

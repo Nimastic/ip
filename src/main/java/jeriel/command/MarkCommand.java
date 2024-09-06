@@ -2,6 +2,7 @@ package jeriel.command;
 import jeriel.task.*;
 import jeriel.util.*;
 import java.io.IOException;
+
 public class MarkCommand extends Command {
     private int taskIndex;
 
@@ -13,23 +14,18 @@ public class MarkCommand extends Command {
         }
     }
 
-    /**
-     * Marks a task as done, and saves the task list to file.
-     * 
-     * @param tasks the task list to mark the task in
-     * @param ui the ui to display the result
-     * @param storage the storage to save to
-     * @throws JerielException if the task number is invalid
-     * @throws IOException if there is an error saving the task list
-     */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws JerielException, IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws JerielException, IOException {
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
             throw new JerielException("Invalid task number. Please enter a valid task number.");
         }
+
         Task task = tasks.get(taskIndex);
-        task.markAsDone();
-        ui.showTaskAdded(task, tasks.size());
-        storage.save(tasks.getTasks());
+        task.markAsDone();  // Mark the task as done
+
+        storage.save(tasks.getTasks());  // Save changes to storage
+
+        // Return a confirmation message
+        return "Nice! I've marked this task as done:\n" + task;
     }
 }

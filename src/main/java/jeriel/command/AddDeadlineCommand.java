@@ -14,24 +14,16 @@ public class AddDeadlineCommand extends Command {
         this.by = parts.length > 1 ? parts[1].trim() : "";
     }
 
-
-    /**
-     * Adds a deadline to the task list, and saves the task list to file.
-     *
-     * @param tasks the task list to add the deadline to
-     * @param ui the ui to display the result
-     * @param storage the storage to save to
-     * @throws JerielException if the description or due date are empty
-     * @throws IOException if there is an error saving the task list
-     */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws JerielException, IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws JerielException, IOException {
         if (description.isEmpty() || by.isEmpty()) {
             throw new JerielException("The description and due date of a deadline cannot be empty.");
         }
         Task task = new Deadline(description, by);
         tasks.addTask(task);
-        ui.showTaskAdded(task, tasks.size());
-        storage.save(tasks.getTasks());
+        storage.save(tasks.getTasks());  // Save after adding
+
+        // Return confirmation message to the user
+        return "Got it. I've added this deadline:\n" + task + "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 }

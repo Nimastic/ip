@@ -1,5 +1,4 @@
 package jeriel.util;
-import jeriel.command.*;
 import jeriel.task.*;
 import java.util.Scanner;
 

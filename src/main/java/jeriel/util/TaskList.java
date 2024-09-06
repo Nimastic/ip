@@ -42,6 +42,10 @@ public class TaskList {
         return tasks.get(index);
     }
 
+    public Task getTask(int index) {
+        return tasks.get(index);
+    }
+
     /**
      * Returns the number of tasks in the task list.
      *

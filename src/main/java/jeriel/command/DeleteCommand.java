@@ -24,7 +24,7 @@ public class DeleteCommand extends Command {
      * @throws IOException if there is an error saving the task list
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws JerielException, IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws JerielException, IOException {
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
             throw new JerielException("Invalid task number. Please enter a valid task number.");
         }
@@ -32,5 +32,7 @@ public class DeleteCommand extends Command {
         tasks.deleteTask(taskIndex);
         ui.showTaskDeleted(task, tasks.size());
         storage.save(tasks.getTasks());
+        return ""; // Add a return statement here
+
     }
 }

@@ -12,7 +12,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         ui.showLine();
         System.out.println(" Here are the matching tasks in your list:");
         int count = 1;
@@ -23,6 +23,7 @@ public class FindCommand extends Command {
             }
         }
         ui.showLine();
+        return ""; // Add a return statement to satisfy the method signature
     }
 
     @Override
